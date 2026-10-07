@@ -1,4 +1,5 @@
 import './style.css';
+import logoUrl from './assets/FISAT_LOGO .png';
 
 // --- Splash Screen & Loading Animation ---
         window.addEventListener('load', () => {
@@ -38,9 +39,9 @@ import './style.css';
                         headerTitle.style.opacity = '1';
                         mainBody.classList.remove('overflow-hidden');
                         
-                        // Clean up: move video into the standard document flow so it scales perfectly on window resize
+                        // Clean up: replace video with static logo once it slots in
                         setTimeout(() => {
-                            placeholder.appendChild(video);
+                            placeholder.innerHTML = `<img src="${logoUrl}" alt="FISAT_LOGO" class="w-full h-full object-contain scale-[1.15]" />`;
                             placeholder.classList.remove('opacity-0');
                             placeholder.classList.add('bg-white', 'rounded-full', 'overflow-hidden', 'flex', 'items-center', 'justify-center');
                             if(flyingLogo) flyingLogo.remove();
@@ -285,5 +286,16 @@ import './style.css';
                     await new Promise(resolve => setTimeout(resolve, delay));
                 }
             }
+        }
+    });
+
+    // --- Parallax Scroll Fade ---
+    window.addEventListener('scroll', () => {
+        const scrollOverlay = document.getElementById('scroll-overlay');
+        if (scrollOverlay) {
+            // Fade up to 0.85 opacity over the first 600px of scrolling
+            const maxScroll = 600; 
+            const opacity = Math.min(window.scrollY / maxScroll, 0.85);
+            scrollOverlay.style.opacity = opacity;
         }
     });

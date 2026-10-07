@@ -7,6 +7,11 @@
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+      }
+    </script>
     
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -99,26 +104,31 @@
     <i class="ph ph-x text-2xl hidden group-hover:block"></i>
 </button>
 
-<main class="flex-grow pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full flex flex-col gap-12">
-    
-    <!-- Hero Section -->
-        <section class="w-full relative h-[40vh] min-h-[300px] max-h-[500px] rounded-3xl overflow-hidden shadow-2xl card-reveal visible">
-            <!-- Placeholder College Image from Unsplash -->
-            <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1600&q=80" alt="FISAT Campus" class="absolute inset-0 w-full h-full object-cover" />
-            
-            <!-- Dark Overlay for better text readability -->
-            <div class="absolute inset-0 bg-black/50 flex items-center justify-center text-center">
-                <div class="p-8 text-white w-full flex flex-col items-center">
-                    <h2 class="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg">Welcome to FISAT</h2>
-                    <p class="text-lg md:text-xl opacity-95 max-w-2xl mb-8 drop-shadow-md">Focus on Excellence. Discover your path at our premier engineering and technology campus.</p>
-                    
-                    <!-- Transparent Explore Button -->
-                    <button class="px-8 py-3 rounded-full border-2 border-white text-white bg-transparent hover:bg-white hover:text-[var(--text-main)] transition-all duration-300 font-semibold tracking-wider uppercase backdrop-blur-sm shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                        Explore Campus
-                    </button>
-                </div>
-            </div>
-        </section>
+    <!-- Fixed Parallax Background -->
+    <div class="fixed inset-0 w-full h-full -z-20 bg-black">
+        <img src="/src/assets/college_light.jpeg" alt="FISAT Campus" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[800ms] ease-in-out opacity-100 dark:opacity-0" />
+        <img src="/src/assets/college_darkj.jpeg" alt="FISAT Campus" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-[800ms] ease-in-out opacity-0 dark:opacity-100" />
+        
+        <!-- Base dark overlay so text is always readable -->
+        <div class="absolute inset-0 bg-black/40"></div>
+        
+        <!-- Dynamic overlay that fades to dark on scroll -->
+        <div id="scroll-overlay" class="absolute inset-0 bg-black opacity-0"></div>
+    </div>
+
+    <!-- Hero Text Section (Transparent) -->
+    <section class="w-full h-screen flex flex-col items-center justify-center text-center px-4 relative z-10">
+        <h2 class="text-5xl md:text-7xl font-bold mb-6 text-white drop-shadow-2xl">Welcome to FISAT</h2>
+        <p class="text-xl md:text-2xl text-white/95 max-w-3xl mb-10 drop-shadow-md">Focus on Excellence. Discover your path at our premier engineering and technology campus.</p>
+        
+        <button class="px-8 py-3 rounded-full border-2 border-white text-white bg-transparent hover:bg-white hover:text-[var(--text-main)] transition-all duration-300 font-bold tracking-wider uppercase backdrop-blur-md shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            Explore Campus
+        </button>
+    </section>
+
+    <!-- Main Content (Solid Layer sliding over parallax) -->
+    <main class="flex-grow bg-[var(--bg-base)] w-full relative z-10 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] transition-colors duration-300 rounded-t-3xl">
+        <div class="pt-16 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full flex flex-col gap-12">
 
         <!-- Main Content Cards -->
         <section class="flex flex-col gap-6 w-full max-w-4xl mx-auto mt-8">
@@ -269,9 +279,10 @@
 
         </section>
 
+        </div>
     </main>
 
-    <footer class="w-full p-6 border-t border-[var(--border-light)] backdrop-blur-sm" style="background-color: color-mix(in srgb, var(--bg-surface) 90%, transparent);">
+    <footer class="w-full p-6 border-t border-[var(--border-light)] bg-[var(--bg-base)] relative z-10">
         <div class="max-w-7xl mx-auto flex items-center">
             <a href="#" class="text-sm font-medium text-[var(--text-muted)] hover:text-[var(--accent)] hover:underline transition-colors">
                 about us
