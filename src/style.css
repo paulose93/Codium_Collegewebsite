@@ -1,14 +1,14 @@
 :root {
-            /* Light Theme: White, Golden Yellow, FISAT Blue */
-            --bg-base: #ffffff; /* Pure white */
-            --bg-surface: #ffffff; /* Pure white */
+            /* Light Theme: Warm White, Golden Yellow, FISAT Blue */
+            --bg-base: #faf8f5; /* Warm off-white like the reference */
+            --bg-surface: #ffffff; /* Pure white for cards */
             --bg-surface-hover: #fffbeb; /* Subtle yellow tint on hover */
             --text-main: #1e293b; /* Dark Slate for readable text */
-            --text-muted: #475569;
-            --border-light: #e2e8f0;
+            --text-muted: #64748b;
+            --border-light: #e8e4df;
             --accent: #13519c; /* FISAT Blue Main Accent */
             --accent-text: #ffffff; /* White text on blue accent */
-            --highlight: #f6a800; /* FISAT Gold / Yellow */
+            --highlight: #ef9e19; /* FISAT Gold / Yellow */
             --pill-bg: #ffffff;
             --header-bg: #13519c; /* FISAT Blue Header */
         }
@@ -21,9 +21,9 @@
             --text-main: #ffffff;
             --text-muted: #9ca3af;
             --border-light: #333333;
-            --accent: #f6a800; /* FISAT Gold Main Accent */
-            --accent-text: #000000; /* Black text on yellow accent */
-            --highlight: #13519c; /* FISAT Blue */
+            --accent: #13519c; /* FISAT Blue Main Accent */
+            --accent-text: #ffffff; /* White text on blue accent */
+            --highlight: #ef9e19; /* FISAT Gold */
             --pill-bg: #000000;
             --header-bg: #000000; /* Pure Black Header */
         }

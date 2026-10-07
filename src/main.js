@@ -4,9 +4,11 @@ import logoUrl from './assets/FISAT_LOGO .png';
 // --- Splash Screen & Loading Animation ---
         window.addEventListener('load', () => {
             const flyingLogo = document.getElementById('flying-logo');
+            if (!flyingLogo) return; // Exit if not on the home page
+
             const placeholder = document.getElementById('logo-placeholder');
             const splashBg = document.getElementById('splash-bg');
-            const blackBar = document.getElementById('header-black-bar');
+            const headerBar = document.getElementById('header-black-bar');
             const headerContent = document.getElementById('header-content');
             const headerTitle = document.getElementById('header-title');
             const mainBody = document.getElementById('main-body');
@@ -28,22 +30,24 @@ import logoUrl from './assets/FISAT_LOGO .png';
                 flyingLogo.style.height = targetRect.height + 'px';
                 flyingLogo.classList.remove('shadow-2xl');
                 
-                // Start expanding the black header bar shortly after it moves
+                // Start showing the header bar shortly after it moves
                 setTimeout(() => {
-                    blackBar.style.width = '100vw';
-                    splashBg.style.opacity = '0'; // Fade out the white splash screen
+                    if (headerBar) headerBar.style.opacity = '1';
+                    if (splashBg) splashBg.style.opacity = '0'; // Fade out the splash screen
                     
                     // Reveal the header content and unlock scrolling
                     setTimeout(() => {
-                        headerContent.style.opacity = '1';
-                        headerTitle.style.opacity = '1';
-                        mainBody.classList.remove('overflow-hidden');
+                        if (headerContent) headerContent.style.opacity = '1';
+                        if (headerTitle) headerTitle.style.opacity = '1';
+                        if (mainBody) mainBody.classList.remove('overflow-hidden');
                         
                         // Clean up: replace video with static logo once it slots in
                         setTimeout(() => {
-                            placeholder.innerHTML = `<img src="${logoUrl}" alt="FISAT_LOGO" class="w-full h-full object-contain scale-[1.15]" />`;
-                            placeholder.classList.remove('opacity-0');
-                            placeholder.classList.add('bg-white', 'rounded-full', 'overflow-hidden', 'flex', 'items-center', 'justify-center');
+                            if (placeholder) {
+                                placeholder.innerHTML = `<img src="${logoUrl}" alt="FISAT_LOGO" class="w-full h-full object-contain scale-[1.15]" />`;
+                                placeholder.classList.remove('opacity-0');
+                                placeholder.classList.add('bg-white', 'rounded-full', 'overflow-hidden', 'flex', 'items-center', 'justify-center');
+                            }
                             if(flyingLogo) flyingLogo.remove();
                             if(splashBg) splashBg.remove();
                         }, 1200); // Wait for all CSS transitions to finish completely
