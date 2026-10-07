@@ -37,7 +37,10 @@ import logoUrl from './assets/FISAT_LOGO .png';
                     
                     // Reveal the header content and unlock scrolling
                     setTimeout(() => {
-                        if (headerContent) headerContent.style.opacity = '1';
+                        if (headerContent) {
+                            headerContent.style.opacity = '1';
+                            headerContent.style.clipPath = 'inset(0 0%)';
+                        }
                         if (headerTitle) headerTitle.style.opacity = '1';
                         if (mainBody) mainBody.classList.remove('overflow-hidden');
                         
@@ -292,7 +295,7 @@ import logoUrl from './assets/FISAT_LOGO .png';
         }
     });
 
-    // --- Parallax Scroll Fade ---
+    // --- Parallax Scroll Fade & Header Shrink ---
     window.addEventListener('scroll', () => {
         const scrollOverlay = document.getElementById('scroll-overlay');
         if (scrollOverlay) {
@@ -300,5 +303,27 @@ import logoUrl from './assets/FISAT_LOGO .png';
             const maxScroll = 600; 
             const opacity = Math.min(window.scrollY / maxScroll, 0.85);
             scrollOverlay.style.opacity = opacity;
+        }
+
+        // Header Shrink Logic
+        const mainHeader = document.getElementById('main-header');
+        const navContent = document.getElementById('header-content');
+        
+        if (mainHeader && navContent) {
+            if (window.scrollY > 50) {
+                // Scrolled: Compact Pill
+                mainHeader.classList.add('pt-4', 'px-4');
+                mainHeader.classList.remove('pt-0', 'px-0');
+                
+                navContent.classList.remove('w-full', 'rounded-none', 'px-4', 'sm:px-8', 'border-b', 'h-16', 'shadow-sm');
+                navContent.classList.add('max-w-6xl', 'rounded-full', 'px-2', 'pl-4', 'sm:pl-6', 'border', 'h-14', 'shadow-lg');
+            } else {
+                // Top: Full Width
+                mainHeader.classList.remove('pt-4', 'px-4');
+                mainHeader.classList.add('pt-0', 'px-0');
+                
+                navContent.classList.remove('max-w-6xl', 'rounded-full', 'px-2', 'pl-4', 'sm:pl-6', 'border', 'h-14', 'shadow-lg');
+                navContent.classList.add('w-full', 'rounded-none', 'px-4', 'sm:px-8', 'border-b', 'h-16', 'shadow-sm');
+            }
         }
     });

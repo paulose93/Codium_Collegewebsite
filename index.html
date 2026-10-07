@@ -33,13 +33,13 @@
     </div>
 
     <!-- ========== FLOATING PILL HEADER ========== -->
-    <header id="main-header" class="fixed top-0 w-full z-50 px-4 pt-4">
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 px-0 pt-0 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
         <div id="header-black-bar" class="absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-[800ms] ease-in-out z-0"></div>
 
-        <nav id="header-content" class="max-w-6xl mx-auto h-14 flex items-center justify-between relative z-10 
-                    bg-white/70 dark:bg-black/60 backdrop-blur-xl rounded-full px-2 pl-4 sm:pl-6 
-                    border border-white/30 dark:border-white/10 shadow-lg shadow-black/5 
-                    opacity-0 transition-all duration-500">
+        <nav id="header-content" class="w-full mx-auto h-16 flex items-center justify-between relative z-10 
+                    bg-white/30 dark:bg-black/30 backdrop-blur-2xl rounded-none px-4 sm:px-8 
+                    border-b border-white/30 dark:border-white/10 shadow-sm 
+                    opacity-0 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]" style="clip-path: inset(0 50%);">
             
             <!-- Left: Hamburger + Nav Links -->
             <div class="flex items-center gap-1 sm:gap-5">
@@ -138,16 +138,24 @@
             Discover your path at FISAT — Kerala's premier engineering and technology campus.
         </p>
         
-        <button class="px-8 py-3.5 rounded-full border-2 border-white text-white bg-transparent hover:bg-white hover:text-[var(--text-main)] transition-all duration-300 font-bold tracking-wider uppercase backdrop-blur-md shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-            Explore Campus
+        <button id="explore-btn" class="px-8 py-3.5 rounded-full border-2 border-white text-white bg-transparent hover:bg-white hover:text-[var(--text-main)] transition-all duration-300 font-bold tracking-wider uppercase backdrop-blur-md shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center gap-2">
+            <i class="ph-fill ph-play-circle text-xl"></i> Explore Campus
         </button>
     </section>
 
     <!-- ========== MAIN CONTENT (Slides over parallax) ========== -->
     <main class="relative z-10 w-full">
 
-        <!-- Top Rounded Edge -->
-        <div class="bg-[var(--bg-base)] rounded-t-[2.5rem] shadow-[0_-20px_60px_rgba(0,0,0,0.4)] transition-colors duration-300">
+        <!-- Top Rounded Edge with Background -->
+        <div class="relative bg-[var(--bg-base)] rounded-t-[2.5rem] shadow-[0_-20px_60px_rgba(0,0,0,0.4)] transition-colors duration-300 overflow-hidden">
+            
+            <!-- Semi-transparent Background Texture -->
+            <div class="absolute inset-0 z-0 opacity-40 dark:opacity-50 pointer-events-none">
+                <img src="./src/assets/subbackground.jpeg" alt="Background Texture" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Content Wrapper -->
+            <div class="relative z-10">
 
 
             <!-- ===== CONTENT CARDS ===== -->
@@ -156,57 +164,85 @@
 
                     <!-- About & Admission -->
                     <div class="group relative w-full h-96 md:h-[28rem] rounded-3xl border-2 border-[var(--highlight)] themed-surface shadow-sm overflow-hidden cursor-pointer card-reveal delay-100 hover:shadow-lg transition-colors duration-300">
-                        <h3 class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl font-extrabold text-center w-full px-4 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] 
-                                   group-hover:top-[25%] group-hover:text-[var(--accent)]">
-                            About & Admission
+                        
+                        <!-- Background Image & Overlay -->
+                        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                            <img src="./src/assets/aboutus.jpeg" alt="About FISAT" class="w-full h-full object-cover scale-100 group-hover:scale-110 transition-transform duration-[1.5s] ease-out">
+                            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]"></div>
+                        </div>
+
+                        <h3 class="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl font-extrabold text-center w-full px-4 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] 
+                                   text-white drop-shadow-md group-hover:top-[25%]">
+                            About
                         </h3>
-                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 mt-2 md:mt-6 flex flex-col items-center gap-3 opacity-0 translate-y-8 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] 
+                        <div class="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 mt-2 md:mt-6 flex flex-col items-center gap-3 opacity-0 translate-y-8 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] 
                                     group-hover:opacity-100 group-hover:translate-y-0 w-full px-6">
-                            <a href="about.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:text-white transition-colors cursor-pointer">About Us</a>
-                            <a href="admissions.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:text-white transition-colors cursor-pointer">Admissions</a>
-                            <a href="approvals.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:text-white transition-colors cursor-pointer">Approvals</a>
+                            <a href="about.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:!text-white transition-colors cursor-pointer">About Us</a>
+                            <a href="admissions.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:!text-white transition-colors cursor-pointer">Admissions</a>
+                            <a href="approvals.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:!text-white transition-colors cursor-pointer">Approvals</a>
                         </div>
                     </div>
 
                     <!-- Academics & Research -->
                     <div class="group relative w-full h-96 md:h-[28rem] rounded-3xl border-2 border-[var(--highlight)] themed-surface shadow-sm overflow-hidden cursor-pointer card-reveal delay-200 hover:shadow-lg transition-colors duration-300">
-                        <h3 class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl font-extrabold text-center w-full px-4 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] 
-                                   group-hover:top-[25%] group-hover:text-[var(--accent)]">
+                        
+                        <!-- Background Image & Overlay -->
+                        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                            <img src="./src/assets/library-scaled.jpg.jpeg" alt="Academics" class="w-full h-full object-cover scale-100 group-hover:scale-110 transition-transform duration-[1.5s] ease-out">
+                            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]"></div>
+                        </div>
+
+                        <h3 class="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl font-extrabold text-center w-full px-4 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] 
+                                   text-white drop-shadow-md group-hover:top-[25%]">
                             Academics & Research
                         </h3>
-                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 mt-2 md:mt-6 flex flex-col items-center gap-3 opacity-0 translate-y-8 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] 
+                        <div class="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 mt-2 md:mt-6 flex flex-col items-center gap-3 opacity-0 translate-y-8 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] 
                                     group-hover:opacity-100 group-hover:translate-y-0 w-full px-6">
-                            <a href="departments.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:text-white transition-colors cursor-pointer">Departments</a>
-                            <a href="faculty.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:text-white transition-colors cursor-pointer">Faculty</a>
-                            <a href="research.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:text-white transition-colors cursor-pointer">Research</a>
+                            <a href="departments.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:!text-white transition-colors cursor-pointer">Departments</a>
+                            <a href="faculty.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:!text-white transition-colors cursor-pointer">Faculty</a>
+                            <a href="research.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:!text-white transition-colors cursor-pointer">Research</a>
                         </div>
                     </div>
 
                     <!-- Campus & Student Life -->
                     <div class="group relative w-full h-96 md:h-[28rem] rounded-3xl border-2 border-[var(--highlight)] themed-surface shadow-sm overflow-hidden cursor-pointer card-reveal delay-300 hover:shadow-lg transition-colors duration-300">
-                        <h3 class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl font-extrabold text-center w-full px-4 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] 
-                                   group-hover:top-[25%] group-hover:text-[var(--accent)]">
+                        
+                        <!-- Background Image & Overlay -->
+                        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                            <img src="./src/assets/sports-scaled.jpg.jpeg" alt="Campus Life" class="w-full h-full object-cover scale-100 group-hover:scale-110 transition-transform duration-[1.5s] ease-out">
+                            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]"></div>
+                        </div>
+
+                        <h3 class="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl font-extrabold text-center w-full px-4 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] 
+                                   text-white drop-shadow-md group-hover:top-[25%]">
                             Campus & Student Life
                         </h3>
-                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 mt-2 md:mt-6 flex flex-col items-center gap-3 opacity-0 translate-y-8 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] 
+                        <div class="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 mt-2 md:mt-6 flex flex-col items-center gap-3 opacity-0 translate-y-8 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] 
                                     group-hover:opacity-100 group-hover:translate-y-0 w-full px-6">
-                            <a href="events.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:text-white transition-colors cursor-pointer">Events</a>
-                            <a href="hostel.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:text-white transition-colors cursor-pointer">Hostel</a>
-                            <a href="gallery.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:text-white transition-colors cursor-pointer">Gallery</a>
+                            <a href="events.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:!text-white transition-colors cursor-pointer">Events</a>
+                            <a href="hostel.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:!text-white transition-colors cursor-pointer">Hostel</a>
+                            <a href="gallery.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:!text-white transition-colors cursor-pointer">Gallery</a>
                         </div>
                     </div>
 
                     <!-- Careers & Industry -->
                     <div class="group relative w-full h-96 md:h-[28rem] rounded-3xl border-2 border-[var(--highlight)] themed-surface shadow-sm overflow-hidden cursor-pointer card-reveal delay-400 hover:shadow-lg transition-colors duration-300">
-                        <h3 class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl font-extrabold text-center w-full px-4 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] 
-                                   group-hover:top-[25%] group-hover:text-[var(--accent)]">
+                        
+                        <!-- Background Image & Overlay -->
+                        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                            <img src="./src/assets/placements.jpeg" alt="Careers and Industry" class="w-full h-full object-cover scale-100 group-hover:scale-110 transition-transform duration-[1.5s] ease-out">
+                            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]"></div>
+                        </div>
+
+                        <h3 class="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl font-extrabold text-center w-full px-4 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] 
+                                   text-white drop-shadow-md group-hover:top-[25%]">
                             Careers & Industry
                         </h3>
-                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 mt-2 md:mt-6 flex flex-col items-center gap-3 opacity-0 translate-y-8 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] 
+                        <div class="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 mt-2 md:mt-6 flex flex-col items-center gap-3 opacity-0 translate-y-8 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] 
                                     group-hover:opacity-100 group-hover:translate-y-0 w-full px-6">
-                            <a href="placements.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:text-white transition-colors cursor-pointer">Placements</a>
-                            <a href="industry.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:text-white transition-colors cursor-pointer">Industry</a>
-                            <a href="alumni.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:text-white transition-colors cursor-pointer">Alumni</a>
+                            <a href="placements.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:!text-white transition-colors cursor-pointer">Placements</a>
+                            <a href="industry.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:!text-white transition-colors cursor-pointer">Industry</a>
+                            <a href="alumni.html" class="px-6 py-2.5 w-full text-center rounded-full text-sm font-medium themed-pill hover:bg-[var(--accent)] hover:!text-white transition-colors cursor-pointer">Alumni</a>
                         </div>
                     </div>
 
@@ -224,7 +260,7 @@
                         <div class="relative flex flex-col items-center gap-3 group z-20">
                             <button class="relative p-[3.5px] rounded-full bg-gradient-to-tr from-[#ef9e19] via-[#13519c] to-[#ef9e19] hover:scale-105 transition-transform duration-300 outline-none cursor-pointer shadow-lg">
                                 <div class="w-24 h-24 md:w-32 md:h-32 rounded-full border-[3px] border-[var(--bg-base)] overflow-hidden bg-[var(--bg-surface)]">
-                                    <img src="./src/assets/acm_logo.png" alt="ACM Logo" class="w-full h-full object-cover">
+                                    <img src="./src/assets/acm%20logo.png" alt="ACM Logo" class="w-full h-full object-cover">
                                 </div>
                             </button>
                             <div class="text-center">
@@ -235,12 +271,12 @@
                             <!-- Hover Popup Card -->
                             <div class="absolute bottom-full mb-4 left-1/2 -translate-x-1/2 w-64 md:w-72 bg-[var(--bg-surface)] border border-[var(--border-light)] rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 pointer-events-none group-hover:pointer-events-auto overflow-hidden">
                                 <div class="h-28 overflow-hidden relative">
-                                    <img src="./src/assets/acm_logo.png" alt="ACM Banner" class="w-full h-full object-cover bg-white">
+                                    <img src="./src/assets/acm%20logo.png" alt="ACM Banner" class="w-full h-full object-cover bg-white">
                                     <div class="absolute top-2 left-2 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">Latest News</div>
                                 </div>
                                 <div class="p-4">
-                                    <h4 class="font-bold text-[var(--text-main)] mb-1 leading-tight">National Tech Symposium '26</h4>
-                                    <p class="text-xs text-[var(--text-muted)] mb-3 line-clamp-2">Registrations are now open for the biggest tech event of the year. Don't miss out on the hackathon!</p>
+                                    <h4 class="font-bold text-[var(--text-main)] mb-1 leading-tight">ACM Student Chapter</h4>
+                                    <p class="text-[11px] text-[var(--text-muted)] mb-3 line-clamp-4">The Association for Computing Machinery (ACM) FISAT Student Chapter fosters technical excellence, conducting regular coding contests, expert talks, and peer-to-peer learning sessions.</p>
 
                                 </div>
                             </div>
@@ -264,8 +300,8 @@
                                     <div class="absolute top-2 left-2 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">Upcoming</div>
                                 </div>
                                 <div class="p-4">
-                                    <h4 class="font-bold text-[var(--text-main)] mb-1 leading-tight">Robotics Workshop Series</h4>
-                                    <p class="text-xs text-[var(--text-muted)] mb-3 line-clamp-2">A 3-day hands-on workshop on Arduino and basic robotics. Limited seats available.</p>
+                                    <h4 class="font-bold text-[var(--text-main)] mb-1 leading-tight">IEEE Student Branch</h4>
+                                    <p class="text-[11px] text-[var(--text-muted)] mb-3 line-clamp-4">The IEEE Student Branch at FISAT is a vibrant engineering community. We host hands-on technical workshops, industrial networking events, and major project exhibitions.</p>
 
                                 </div>
                             </div>
@@ -336,6 +372,9 @@
                 </h2>
             </div>
         </section>
+
+        </div> <!-- End of z-10 wrapper -->
+        </div> <!-- End of Top Rounded Edge with Background -->
 
         <!-- ===== FOOTER ===== -->
         <footer class="w-full border-t border-[var(--border-light)] bg-[var(--bg-base)] transition-colors duration-300">
@@ -412,5 +451,57 @@
 
     <script type="module" src="/src/main.js"></script>
 
+    <!-- ===== VIDEO MODAL ===== -->
+    <div id="video-modal" class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm opacity-0 invisible transition-all duration-500 flex items-center justify-center p-4">
+        <div class="relative w-full max-w-6xl aspect-video rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] scale-95 transition-transform duration-500 delay-100" id="video-container">
+            <!-- Close Button -->
+            <button id="close-video-btn" class="absolute top-4 right-4 z-10 w-10 h-10 bg-black/60 hover:bg-red-500 text-white rounded-full flex items-center justify-center transition-colors backdrop-blur-md border border-white/20">
+                <i class="ph ph-x text-xl"></i>
+            </button>
+            <video id="campus-video" src="./src/assets/video.mp4" controls class="w-full h-full object-cover bg-black"></video>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const exploreBtn = document.getElementById('explore-btn');
+            const videoModal = document.getElementById('video-modal');
+            const closeVideoBtn = document.getElementById('close-video-btn');
+            const campusVideo = document.getElementById('campus-video');
+            const videoContainer = document.getElementById('video-container');
+
+            if (exploreBtn && videoModal) {
+                // Open Modal & Play
+                exploreBtn.addEventListener('click', () => {
+                    videoModal.classList.remove('opacity-0', 'invisible');
+                    videoModal.classList.add('opacity-100', 'visible');
+                    setTimeout(() => {
+                        videoContainer.classList.remove('scale-95');
+                        videoContainer.classList.add('scale-100');
+                        campusVideo.play();
+                    }, 50);
+                });
+
+                // Close Modal & Reset
+                const closeModal = () => {
+                    campusVideo.pause();
+                    campusVideo.currentTime = 0; // Reset video to start
+                    videoContainer.classList.remove('scale-100');
+                    videoContainer.classList.add('scale-95');
+                    videoModal.classList.remove('opacity-100', 'visible');
+                    videoModal.classList.add('opacity-0', 'invisible');
+                };
+
+                closeVideoBtn.addEventListener('click', closeModal);
+                
+                // Close if clicked outside the video area
+                videoModal.addEventListener('click', (e) => {
+                    if (e.target === videoModal) {
+                        closeModal();
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
