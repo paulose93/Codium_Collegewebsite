@@ -51,9 +51,16 @@
 
             <!-- Right: Actions -->
             <div class="flex items-center gap-2 sm:gap-4">
-                <button id="themeToggle" class="p-2 rounded-full hover:bg-white/10 transition-colors" aria-label="Toggle Theme">
-                    <i class="ph ph-sun text-xl" id="themeIcon"></i>
-                </button>
+                <!-- Minimal Theme Toggle Switch -->
+                <label for="themeToggleCheckbox" class="relative inline-flex items-center cursor-pointer w-14 h-7 rounded-full flex-shrink-0 mr-2 border border-white/40 overflow-hidden">
+                    <input type="checkbox" id="themeToggleCheckbox" class="peer sr-only">
+                    
+                    <!-- Track Background (White -> Black) -->
+                    <div class="absolute inset-0 bg-white peer-checked:bg-black transition-colors duration-300"></div>
+
+                    <!-- Thumb (Black -> White) -->
+                    <div class="absolute left-1 top-1 w-5 h-5 rounded-full transition-transform duration-300 peer-checked:translate-x-7 bg-black peer-checked:bg-white shadow-sm"></div>
+                </label>
                 <button class="hidden sm:block px-5 py-2 rounded-full text-sm font-semibold border border-white/20 hover:bg-white/10 transition-colors">
                     Login
                 </button>

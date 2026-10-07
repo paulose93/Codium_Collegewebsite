@@ -57,32 +57,31 @@ import logoUrl from './assets/FISAT_LOGO .png';
         document.addEventListener('DOMContentLoaded', () => {
             
             // --- Theme Toggling Logic ---
-            const themeToggleBtn = document.getElementById('themeToggle');
-            const themeIcon = document.getElementById('themeIcon');
+            const themeToggleCheckbox = document.getElementById('themeToggleCheckbox');
             const htmlElement = document.documentElement;
 
             // Check system or saved preference
             const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            const isDark = savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            
+            if (isDark) {
                 htmlElement.classList.add('dark');
-                updateIcon(true);
+                if (themeToggleCheckbox) themeToggleCheckbox.checked = true;
+            } else {
+                htmlElement.classList.remove('dark');
+                if (themeToggleCheckbox) themeToggleCheckbox.checked = false;
             }
 
-            themeToggleBtn.addEventListener('click', () => {
-                htmlElement.classList.toggle('dark');
-                const isDark = htmlElement.classList.contains('dark');
-                updateIcon(isDark);
-                localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            });
-
-            function updateIcon(isDark) {
-                if (isDark) {
-                    themeIcon.classList.remove('ph-sun');
-                    themeIcon.classList.add('ph-moon');
-                } else {
-                    themeIcon.classList.remove('ph-moon');
-                    themeIcon.classList.add('ph-sun');
-                }
+            if (themeToggleCheckbox) {
+                themeToggleCheckbox.addEventListener('change', (e) => {
+                    const darkEnabled = e.target.checked;
+                    if (darkEnabled) {
+                        htmlElement.classList.add('dark');
+                    } else {
+                        htmlElement.classList.remove('dark');
+                    }
+                    localStorage.setItem('theme', darkEnabled ? 'dark' : 'light');
+                });
             }
 
 
