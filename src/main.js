@@ -327,3 +327,49 @@ import logoUrl from './assets/FISAT_LOGO .png';
             }
         }
     });
+
+    // --- Mobile Menu Logic ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuContent = document.getElementById('mobile-menu-content');
+        const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
+
+        function openMobileMenu() {
+            if (!mobileMenu || !mobileMenuContent) return;
+            mobileMenu.classList.remove('opacity-0', 'invisible');
+            mobileMenu.classList.add('opacity-100', 'visible');
+            mobileMenuContent.classList.remove('-translate-x-full');
+            mobileMenuContent.classList.add('translate-x-0');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeMobileMenu() {
+            if (!mobileMenu || !mobileMenuContent) return;
+            mobileMenuContent.classList.remove('translate-x-0');
+            mobileMenuContent.classList.add('-translate-x-full');
+            
+            // Wait for transform transition before hiding background
+            setTimeout(() => {
+                mobileMenu.classList.remove('opacity-100', 'visible');
+                mobileMenu.classList.add('opacity-0', 'invisible');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', openMobileMenu);
+        }
+
+        if (closeMobileMenuBtn) {
+            closeMobileMenuBtn.addEventListener('click', closeMobileMenu);
+        }
+
+        if (mobileMenu) {
+            mobileMenu.addEventListener('click', (e) => {
+                if (e.target === mobileMenu) {
+                    closeMobileMenu();
+                }
+            });
+        }
+    });
